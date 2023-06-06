@@ -7,8 +7,10 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { useTranslation } from "react-multi-lang";
+import { useNavigate } from "react-router-dom";
 
 function TableTraslate() {
+  const history = useNavigate();
   const t = useTranslation();
   const [employees, setEmployees] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -28,8 +30,10 @@ function TableTraslate() {
     localStorage.setItem("lang", value);
     window.location.reload();
   };
+
+  // const {id} = useParams{(employees.map((data) => data.id))};
   return (
-    <div className="App">
+    <div>
       <h1>{t("HOME.HELLO")}</h1>
       <h2>{t("HOME.Text")}</h2>
       <table>
@@ -48,6 +52,14 @@ function TableTraslate() {
                 <td>{data.email}</td>
                 <td>{data.phone}</td>
                 <td>{data.website}</td>
+                <td>
+                  <button
+                    onClick={() => history("/user-details")}
+                    target="_blank"
+                  >
+                    Action
+                  </button>
+                </td>
               </tr>
             );
           })}
