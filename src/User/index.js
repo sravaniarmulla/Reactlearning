@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
 import UserModal from "./Modal";
-import axios from "axios";
+import { getUsers } from "../actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddUser = () => {
   const [userAddedDeatails, setUserAddedDeatails] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [initialValues, setInitialValues] = useState({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [])
+
+  const userData = useSelector((state) => state.user.userData);
+
+  useEffect(() => {
+    if (userData && userData?.length) {
+      setUserAddedDeatails(userData)
+    }
+  }, [userData])
 
   const header = ["NAME", "EMAIL", "Action"];
-  useEffect(() => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .get(`${process.env.REACT_APP_USER_URL}`, {
-        headers: headers,
-      })
-      .then((response) => {
-        console.log(response.data);
-        setUserAddedDeatails(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  
   console.log(userAddedDeatails);
   return (
     <div>

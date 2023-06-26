@@ -71,5 +71,6 @@ function UserModal(props) {
   );
 }
 export default reduxForm({
-  form: "Modal",
+  form: "userForm",
+  enableReinitialize : true // this is needed!!
 })(UserModal);
