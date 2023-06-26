@@ -25,6 +25,7 @@ function TableTraslate() {
     t("HOME.EMAIL"),
     t("HOME.NUMBER"),
     t("HOME.WEBSITE"),
+    "Action",
   ];
   const changeLangauge = (value) => {
     localStorage.setItem("lang", value);
@@ -54,10 +55,14 @@ function TableTraslate() {
                 <td>{data.website}</td>
                 <td>
                   <button
-                    onClick={() => history("/user-details")}
+                    onClick={() =>
+                      history(
+                        `/user-details/${data.id}?userId=${data.id}&userName=${data.name}&userEmail=${data.email}`
+                      )
+                    }
                     target="_blank"
                   >
-                    Action
+                    user
                   </button>
                 </td>
               </tr>
