@@ -9,6 +9,7 @@ import hin from "./locales/hin/traslation.json";
 import tel from "./locales/tel/traslation.json";
 import SimpleForm from "./reduxForm";
 import Login from "./login/index";
+import PostUser from "./posts/index";
 import ResetPassword from "./login/RestPas";
 import { setTranslations, setDefaultLanguage } from "react-multi-lang";
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/user-details/:id" element={<UserDetails />} />
         <Route path="/addUser" element={<AddUser />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/post-user" element={<PostUser />} />
       </Routes>
     </div>
   );
